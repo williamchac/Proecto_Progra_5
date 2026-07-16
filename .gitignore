@@ -1,0 +1,44 @@
+## Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Build
+bin/
+obj/
+out/
+
+## Rider
+.idea/
+
+## Visual Studio Code
+.vscode/
+
+## NuGet
+*.nupkg
+packages/
+
+## msbuild
+*.rsp
+*.cache
+*.log
+
+## EF / DB
+*.mdf
+*.ldf
+*.log
+
+## Published output
+publish/
+wwwroot/
+
+## OS files
+Thumbs.db
+.DS_Store
+
+## Secrets / local settings (revisar antes de ignorar si quieres versionar)
+appsettings.Development.json
+secrets.json
+

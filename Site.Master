@@ -1,0 +1,193 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ProyectoFinalP5.Site" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Booking.com</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    
+    <style>
+        :root {
+            --booking-blue: #003580;
+            --booking-light-blue: #0071c2;
+            --booking-yellow: #febb02;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        .navbar-custom {
+            background-color: var(--booking-blue);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            color: white !important;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .navbar-custom .nav-link {
+            color: white !important;
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem !important;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .navbar-custom .nav-link:hover {
+            background-color: var(--booking-light-blue);
+        }
+        
+        .user-info {
+            color: white;
+            margin-right: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .user-info i {
+            margin-right: 0.5rem;
+            color: var(--booking-yellow);
+        }
+        
+        .main-content {
+            min-height: calc(100vh - 180px);
+            padding: 2rem 0;
+        }
+        
+        .footer-custom {
+            background-color: var(--booking-blue);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-custom a {
+            color: var(--booking-yellow);
+            text-decoration: none;
+        }
+        
+        .page-title {
+            color: var(--booking-blue);
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--booking-yellow);
+        }
+        
+        .btn-booking {
+            background-color: var(--booking-light-blue);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-booking:hover {
+            background-color: var(--booking-blue);
+            color: white;
+        }
+        
+        .table-zebra tbody tr:nth-child(odd) {
+            background-color: #f8f9fa;
+        }
+        
+        .table-zebra tbody tr:nth-child(even) {
+            background-color: white;
+        }
+        
+        .alert-custom {
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+    
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <i class="fas fa-bed"></i> Booking.com
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item" id="liMisReservaciones" runat="server">
+                            <asp:LinkButton ID="lnkMisReservaciones" runat="server" CssClass="nav-link" OnClick="lnkMisReservaciones_Click">
+                                <i class="fas fa-calendar-check"></i> Mis Reservaciones
+                            </asp:LinkButton>
+                        </li>
+                        <li class="nav-item" id="liGestionarReservaciones" runat="server" visible="false">
+                            <asp:LinkButton ID="lnkGestionarReservaciones" runat="server" CssClass="nav-link" OnClick="lnkGestionarReservaciones_Click">
+                                <i class="fas fa-tasks"></i> Gestionar Reservaciones
+                            </asp:LinkButton>
+                        </li>
+                        <li class="nav-item" id="liGestionarHabitaciones" runat="server" visible="false">
+                            <asp:LinkButton ID="lnkGestionarHabitaciones" runat="server" CssClass="nav-link" OnClick="lnkGestionarHabitaciones_Click">
+                                <i class="fas fa-door-open"></i> Gestionar Habitaciones
+                            </asp:LinkButton>
+                        </li>
+                        <li class="nav-item user-info" id="liUsuario" runat="server">
+                            <span>
+                                <i class="fas fa-user-circle"></i>
+                                <asp:Label ID="lblNombreUsuario" runat="server" Text=""></asp:Label>
+                            </span>
+                        </li>
+                        <li class="nav-item">
+                            <asp:LinkButton ID="lnkCerrarSesion" runat="server" CssClass="nav-link" OnClick="lnkCerrarSesion_Click" OnClientClick="return confirm('¿Está seguro que desea cerrar sesión?');">
+                                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                            </asp:LinkButton>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Contenido Principal -->
+        <div class="main-content">
+            <div class="container">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer-custom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5><i class="fas fa-bed"></i> Booking.com</h5>
+                        <p>Sistema de Reservaciones de Hospedaje</p>
+                        <p class="mb-0">© 2024 Todos los derechos reservados</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <p class="mb-2"><i class="fas fa-envelope"></i> info@booking.com</p>
+                        <p class="mb-2"><i class="fas fa-phone"></i> +506 2222-2222</p>
+                        <p class="mb-0">
+                            <a href="#"><i class="fab fa-facebook fa-lg me-3"></i></a>
+                            <a href="#"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                            <a href="#"><i class="fab fa-instagram fa-lg"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </form>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
