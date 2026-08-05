@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <main aria-labelledby="title">
         <h2 id="title"><%: Title %>.</h2>
-        <h3>Your application description page.</h3>
-        <p>Use this area to provide additional information.</p>
+        <h3>Acerca de nuestro sistema de renta de videojuegos</h3>
+        <p>Plataforma diseñada para la gestión, control y alquiler de videojuegos.</p>
     </main>
 </asp:Content>
