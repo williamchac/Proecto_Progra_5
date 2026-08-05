@@ -42,3 +42,10 @@ Thumbs.db
 appsettings.Development.json
 secrets.json
 
+## Ignorar temporales de Visual Studio
+.vs/
+bin/
+obj/
+*.user
+*.suo
+
